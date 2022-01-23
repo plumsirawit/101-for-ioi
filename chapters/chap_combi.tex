@@ -1,0 +1,86 @@
+\chapter{Combinatorics}
+
+\section{2-row-tiling Problem}
+
+สำหรับจำนวนเต็มบวก $N$ ใด ๆ พิจารณาปัญหาการจัดวางกระเบื้องขนาด $2 \times N$ กล่าวคือ มีพื้นเป็นตาราง $2$ แถว $N$ คอลัมน์ ต้องการจัดวางกระเบื้องขนาด $1 \times 2$ หรือ $2 \times 1$ ลงไป $N$ กระเบื้อง จะสามารถวางกระเบื้องได้กี่แบบ
+
+\begin{exercise}
+จงหาความสัมพันธ์เวียนเกิดของปัญหานี้ กล่าวคือ หากนิยามให้ $f_n$ แทนคำตอบของปัญหาขนาด $n$ แล้วจงเขียน $f_n$ ในรูปของ $f_{n-1}, f_{n-2}, \dots$
+\end{exercise}
+
+\begin{exercise}
+จงออกแบบอัลกอริทึมที่สามารถแก้ปัญหานี้ได้ใน $O(N)$
+\end{exercise}
+
+\begin{exercise}
+จงแสดงว่ามีเมตริกซ์ $A$ ขนาด $2 \times 2$ ที่
+\[
+\begin{bmatrix}f_{n+1} \\ f_n\end{bmatrix} = A \begin{bmatrix}f_{n}\\f_{n-1}\end{bmatrix}
+\]
+สำหรับทุกจำนวนเต็ม $n \geq 2$
+\end{exercise}
+
+\begin{exercise}
+จงออกแบบอัลกอริทึมที่สามารถแก้ปัญหานี้ได้ใน $O(\log N)$
+\end{exercise}
+
+\section{Erdős–Szekeres theorem}
+
+\begin{definition}
+เราจะกล่าวว่าฟังก์ชัน $f \colon A \to B$ เป็นฟังก์ชันเพิ่มขึ้นอย่างเคร่งครัด (strictly increasing) เมื่อ สำหรับทุก $x, y \in A$ ถ้า $x < y$ แล้ว $f(x) < f(y)$
+\end{definition}
+
+\begin{definition}
+ให้ $N$ เป็นจำนวนเต็มไม่ลบ สำหรับอาเรย์ $A$ ที่มีขนาด $N$ ที่ระบุสมาชิกตั้งแต่ตัวที่ $0$ ถึงตัวที่ $N-1$ เราจะกล่าวว่า $B$ เป็นลำดับย่อยของ $A$ ก็ต่อเมื่อ $B_i = A_{\phi(i)}$ สำหรับบางฟังก์ชันเพิ่มขึ้นอย่างเคร่งครัด $\phi \colon \{0, \dots, |B|-1\} \to \{0, \dots, |A|-1\}$
+\end{definition}
+
+\begin{definition}
+อาเรย์ $A$ จะถือว่าเป็นอาเรย์เพิ่มขึ้นตลอด เมื่อสำหรับทุก $i, j \in \{0, \dots, |A|-1\}$ ถ้า $i < j$ แล้ว $A_i < A_j$ และจะถือว่าเป็นอาเรย์ลดลงตลอด เมื่อสำหรับทุก $i, j \in \{0, \dots, |A|-1\}$ ถ้า $i < j$ แล้ว $A_i > A_j$
+\end{definition}
+
+\begin{exercise}
+ให้ $r, s$ เป็นจำนวนเต็มบวก และกำหนดอาเรย์ของจำนวนเต็มที่แตกต่างกันทั้งหมด $N$ ตัว เมื่อ $(r-1)(s-1) < N$ จงพิสูจน์ว่าเราสามารถหาลำดับย่อย (ไม่จำเป็นต้องติดกัน) ของอาเรย์ที่กำหนดให้ ขนาด $r$ ที่เป็นลำดับย่อยเพิ่มขึ้นตลอด หรือ ขนาด $s$ ที่เป็นลำดับย่อยลดลงตลอด
+\end{exercise}
+
+\begin{exercise}
+ให้ $N$ เป็นจำนวนเต็มบวกที่มากกว่า $10$ และให้ $\pi \colon \{0, \dots, N-1\} \to \{0, \dots, N-1\}$ เป็นฟังก์ชันหนึ่งต่อหนึ่งทั่วถึง จงแสดงว่า มีอาเรย์ $C$ ของจำนวนเต็ม $\lfloor \sqrt{N-1} \rfloor$ ตัวที่สมาชิกแต่ละตัวอยู่ระหว่าง $0$ ถึง $N-1$ ที่เป็นอาเรย์เพิ่มขึ้นตลอด ที่ทำให้ $(\pi(C_i))_{i=0}^{\lfloor\sqrt{N-1}\rfloor}$ เป็นลำดับเพิ่มขึ้นตลอด หรือลดลงตลอด
+\end{exercise}
+
+\section{Derangement}
+
+\begin{exercise}
+จงนับจำนวนวิธีในการเรียงสับเปลี่ยนตัวอักษรในคำว่า \texttt{WONDERFUL} โดยที่ไม่มีตัวอักษรใดอยู่ในที่เดิม พร้อมพิสูจน์ที่มาของคำตอบ
+\end{exercise}
+
+\section{Invertible Matrices}
+
+\begin{exercise}
+ให้ $n$ เป็นจำนวนเต็มบวก จงนับจำนวนเมตริกซ์ขนาด $n \times n$ ทั้งหมดที่ประกอบด้วย $\{0, 1\}$ ในแต่ละช่อง และเป็นเมตริกซ์ที่ผกผันได้ (invertible)
+\end{exercise}
+
+% \section{Fish}
+
+% Schegerazade blah blah
+
+% \begin{exercise}
+
+% \end{exercise}
+
+% \begin{exercise}
+
+% \end{exercise}
+
+% \begin{exercise}
+
+% \end{exercise}
+
+% \begin{exercise}
+
+% \end{exercise}
+
+% \begin{exercise}
+
+% \end{exercise}
+
+% \begin{bonus}
+% \end{bonus}

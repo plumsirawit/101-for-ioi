@@ -1,0 +1,137 @@
+%! TEX program = xelatex
+\documentclass[12pt]{octavo}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[localfonts=true]{tenth-sirawit}
+\usepackage{tocloft}
+
+\DeclareMathOperator*{\xor}{\texttt{XOR}}
+\DeclareMathOperator{\spn}{span}
+
+\setlength\cftparskip{-4pt}
+\setlength\cftbeforesecskip{0pt}
+\setlength\cftaftertoctitleskip{1pt}
+\renewcommand{\contentsname}{\hfill\bfseries\huge\sffamily สารบัญ\hfill}
+\renewcommand{\cftloftitlefont}{\sffamily}
+\renewcommand{\cftlottitlefont}{\sffamily}
+\renewcommand{\cftchapfont}{\sffamily}
+\renewcommand{\cftsecfont}{\sffamily}
+\renewcommand{\cftsubsecfont}{\sffamily}
+\renewcommand{\cftchappagefont}{\sffamily}
+\renewcommand{\cftsecpagefont}{\sffamily}
+\renewcommand{\cftsubsecpagefont}{\sffamily}
+
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries\sffamily}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+\title{101 for IOI}
+\author{สิรวิชญ์ พงศ์นคินทร์}
+\date{}
+
+\begin{document}
+
+\thispagestyle{titlepage}
+\setstretch{1.3}
+
+\vspace*{\fill}
+
+\begin{center}
+{
+    \noindent\sffamily
+    {\Huge\sbseries 101 for IOI}
+    
+    \medskip
+    
+    โจทย์ที่เลือกมาสำหรับการฝึกฝนในค่ายอบรมคัดเลือกวิชาคอมพิวเตอร์\\
+    สำหรับโครงการจัดส่งผู้แทนประเทศไทยไปแข่งคอมพิวเตอร์โอลิมปิกระหว่างประเทศ
+    
+    \bigskip
+    
+    (เฉพาะส่วนที่ 1)
+    
+    \vspace{2cm}
+    
+    23 มกราคม 2565
+    
+    \vspace{3cm}
+    
+    \textbf{สิรวิชญ์ พงศ์นคินทร์}
+    
+    รวบรวมและเรียบเรียง
+}
+\end{center}
+
+\vspace*{\fill}
+
+\newpage
+
+\chapter*{คำนำ}
+\addcontentsline{toc}{chapter}{คำนำ}
+
+หนังสือเล่มนี้ จัดทำขึ้นเพื่อเป็นส่วนเสริมสำหรับการเรียนการสอนในโครงการจัดส่งผู้แทนประเทศไทยไปแข่งขันโอลิมปิกระหว่างประเทศ วิชาคอมพิวเตอร์ ของ สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.)
+
+เนื่องด้วยสถานการณ์ที่ไม่เป็นระเบียบเรียบร้อยของไม่กี่ปีที่ผ่านมา ซึ่งเป็นผลกระทบจากเหตุการณ์การระบาดของโรคติดเชื้อไวรัสโคโรนา 2019 (COVID-19) ทำให้การจัดการเรียนการสอนภายในค่ายเตรียมความพร้อมหลายครั้งเสียประสิทธิภาพ ผู้เขียนได้เขียนหนังสือเล่มนี้โดยมีวัตถุประสงค์ที่จะมาทดแทน หรือเสริมสร้าง ทักษะทางวิชาการ ซึ่งผู้เขียนมองว่าเป็นองค์ประกอบสำคัญสำหรับการเตรียมความพร้อมผู้เรียนไปแข่งขันคอมพิวเตอร์โอลิมปิกระหว่างประเทศ
+
+เนื่องจากผู้เรียนบางคนประสบปัญหาทางภาษา ผู้เขียนจึงพยายามเขียนหนังสือเล่มนี้ให้อยู่บนพื้นฐานของภาษาไทยมากที่สุดเท่าที่จะทำได้ หนังสือเล่มนี้เหมาะสำหรับผู้อ่านที่เป็นนักเรียน (โดยเฉพาะนักเรียนค่ายคอมพิวเตอร์โอลิมปิกทุกระดับ) และผู้สนใจศึกษาทั่วไป ผู้เขียนหวังว่าผู้อ่านจะได้รับประโยชน์จากการอ่าน (และที่สำคัญคือการทำโจทย์) จากหนังสือเล่มนี้กลับไปไม่มากก็น้อย
+
+ในขณะที่ผู้เขียนได้ทำการรวบรวมหนังสือเล่มนี้ ผู้เขียนขอยืนยันว่าไม่มั่นใจในความสามารถตนเอง กล่าวคือ หนังสือเล่มนี้อาจมีข้อผิดพลาดประการใดก็เป็นได้ ผู้เขียนขอขอบคุณล่วงหน้าสำหรับทุกคำติชม หากผู้อ่านพบข้อผิดพลาดประการใด สามารถติดต่อผู้เขียนกลับมาได้ที่อีเมล sirawit@pongnakin.com
+
+ผู้เขียนขอแสดงความขอบคุณต่อ คุณอาภาพงศ์ จันทร์ทอง และคุณพงศพล พงศาวกุล สำหรับแม่แบบ (template) สำหรับการพิมพ์หนังสือเล่มนี้ นอกจากนี้ขอแสดงความขอบคุณต่อ อาจารย์ ผศ.ดร.จิตร์ทัศน์ ฝักเจริญผล และ อาจารย์ ผศ.ดร.นัทที นิภานันท์ สำหรับการช่วยเหลือดูแลนักเรียนในค่ายเตรียมความพร้อม
+
+\chapter*{LICENSE}
+\addcontentsline{toc}{chapter}{LICENSE}
+
+For the section \ref{codeforces:786B} the following license is applied:
+\begin{center}
+\textbf{Codeforces materials usage license (v. 0.1)}    
+\end{center}
+\begin{enumerate}
+    \item You may publish the texts of Codeforces problems in any open sources, but you must preserve a direct link to the site http://codeforces.ru (http://codeforces.com for English statements) and indicate Codeforces as the problem source. These data should be located in the close proximity to the statement, be easily noticeable and readable. It is forbidden to publish Codeforces problems in open sources supporting automatic testing (such as online judges or similar resources).
+    \item You must not use tests and other materials of the problems (generators, checkers, validators) to publish tasks in open sources supporting automatic testing (such as online judges or similar resources) even provided the original problem conditions has been changed.
+    \item You may use the provided material: tests, generators, checkers, validators and others for individual training or to organize short-term teaching and training activities with the participants present on-site. Task conditions should contain the data from paragraph 1 of this license. The secondary (subsequent) distribution of the tasks should contain this license and comply fully with the license’s rules.
+\end{enumerate}
+
+For the sections denoted with a direct reference to the author, refer to the author for direct license.
+
+For all other sections (with no direct reference), the following license is applied:
+
+This work is licensed under the Creative Commons Attribution-NonCommercial 4.0 International License. To view a copy of this license, visit
+http://creativecommons.org/licenses/by-nc/4.0/.
+
+\begin{center}
+\includegraphics[width=4cm]{by-nc}
+\end{center}
+
+\newpage
+
+{
+\sffamily
+\tableofcontents
+}
+
+\part{\sffamily แบบฝึกหัดส่วนที่ 1}
+\pagestyle{plain}
+\fancyhead[R]{\sffamily {\leftmark}}
+\include{chapters/chap_complexity}
+\include{chapters/chap_proof}
+\include{chapters/chap_treehash}
+\include{chapters/chap_divconq}
+\include{chapters/chap_combi}
+\include{chapters/chap_random}
+\include{chapters/chap_dp}
+\include{chapters/chap_graph}
+\include{chapters/chap_greedymst}
+\include{chapters/chap_shortestpaths}
+\include{chapters/chap_advds}
+\include{chapters/chap_linalg}
+
+\nocite{*}
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
